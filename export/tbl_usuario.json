@@ -50,10 +50,13 @@
             "faker":{"generator": "street_suffix"}
         },
         "usuario_saldo_total":{
-            "type":"string",
-            "faker":{
-                "generator": "credit_card"
-            }
+            "type":"number",
+            "range": {
+                "low": 1,
+                "high": 999999,
+                "include_high": true
+            },
+            "subtype": "i32"
         },
         "usuario_correo":{
             "type":"string",

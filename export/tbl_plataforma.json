@@ -1,0 +1,14 @@
+{
+    "type": "array",
+    "length": {
+        "type": "number",
+        "constant": 4
+      },
+    "content": {
+        "type": "object",
+        "plataforma_nombre": {
+            "type": "datasource",
+            "path": "json:platforms.json"
+        }
+    }
+}
