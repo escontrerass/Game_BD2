@@ -1,0 +1,8 @@
+GENERAR:
+Local
+synth generate FOLDER
+Postgres
+synth generate --to postgres://postgres:123456@localhost:5432/Game_BD2 --schema public FOLDER --size X
+
+IMPORTAR:
+synth import --from postgres://postgres:123456@localhost:5432/Game_BD2 --schema public FOLDER
