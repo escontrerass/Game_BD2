@@ -1,0 +1,23 @@
+{
+  "type": "array",
+  "length": {
+    "type": "number",
+    "constant": 1
+  },
+  "content": {
+    "type": "object",
+    "id_item": {
+      "type": "same_as",
+      "ref": "tbl_item.content.id_item"
+    },
+    "id_tipo_pago": {
+      "type": "same_as",
+      "ref": "tbl_tipo_pago.content.id_tipo_pago"
+    },
+    "id_tipo_pago_item": {
+      "type": "number",
+      "id": {},
+      "subtype": "i32"
+    }
+  }
+}

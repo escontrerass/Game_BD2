@@ -1,0 +1,32 @@
+{
+  "type": "array",
+  "length": {
+    "type": "number",
+    "constant": 1
+  },
+  "content": {
+    "type": "object",
+    "id_detalle_registro_compra": {
+      "type": "number",
+      "id": {},
+      "subtype": "i32"
+    },
+    "id_plataforma": {
+      "type": "same_as",
+      "ref": "tbl_plataforma.content.id_plataforma"
+    },
+    "id_registro_compra": {
+      "type": "same_as",
+      "ref": "tbl_registro_compra.content.id_registro_compra"
+    },
+    "id_tipo_pago_item": {
+      "type": "same_as",
+      "ref": "tbl_tipo_tipo_pago_item.content.id_tipo_pago_item"
+    },
+    "sub_total": {
+      "type": "number",
+      "range": {},
+      "subtype": "i32"
+    }
+  }
+}
