@@ -3,6 +3,7 @@ GENERAR:
 Local
 synth generate data
 Postgres
+synth generate --to postgres://postgres:123456@localhost:5432/Game_BD2 --schema public unique
 synth generate --to postgres://postgres:123456@localhost:5432/Game_BD2 --schema public data --size X
 
 IMPORTAR:

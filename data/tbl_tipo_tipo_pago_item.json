@@ -11,8 +11,14 @@
       "ref": "tbl_item.content.id_item"
     },
     "id_tipo_pago": {
-      "type": "same_as",
-      "ref": "tbl_tipo_pago.content.id_tipo_pago"
+      "type": "number",
+      "range": {
+        "low": 1,
+        "high": 2,
+        "step": 1,
+        "include_high": true
+      },
+      "subtype": "i32"
     },
     "id_tipo_pago_item": {
       "type": "number",

@@ -12,8 +12,14 @@
       "subtype": "i32"
     },
     "id_plataforma": {
-      "type": "same_as",
-      "ref": "tbl_plataforma.content.id_plataforma"
+      "type": "number",
+      "range": {
+        "low": 1,
+        "high": 4,
+        "step": 1,
+        "include_high": true
+      },
+      "subtype": "i32"
     },
     "id_registro_compra": {
       "type": "same_as",
