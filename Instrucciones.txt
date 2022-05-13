@@ -1,10 +1,10 @@
 https://www.getsynth.com/
 GENERAR:
 Local
-synth generate data
+synth generate FOLDER
 Postgres
-synth generate --to postgres://postgres:123456@localhost:5432/Game_BD2 --schema public unique
-synth generate --to postgres://postgres:123456@localhost:5432/Game_BD2 --schema public data --size X
+synth generate --to postgres://USER:PASSWORD@localhost:PORT/NAME_BD --schema public FOLDER
+synth generate --to postgres://USER:PASSWORD@localhost:PORT/NAME_BD --schema public FOLDER --size X
 
 IMPORTAR:
-synth import --from postgres://postgres:123456@localhost:5432/Game_BD2 --schema public FOLDER
+synth import --from postgres://USER:PASSWORD@localhost:PORT/NAME_BD --schema public FOLDER
