@@ -12,20 +12,20 @@
       "subtype": "i32"
     },
     "pago_nombre": {
-        "type": "unique",
-        "content": {
-          "type": "one_of",
-          "variants": [
-            {
-              "type": "string",
-              "pattern": "CreditCard"
-            },
-            {
-              "type": "string",
-              "pattern": "Paypal"
-            }
-          ]
-        }
+      "type": "unique",
+      "content": {
+        "type": "one_of",
+        "variants": [
+          {
+            "type": "string",
+            "pattern": "CreditCard"
+          },
+          {
+            "type": "string",
+            "pattern": "Paypal"
+          }
+        ]
+      }
     }
   }
 }
