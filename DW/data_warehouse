@@ -1,0 +1,937 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.2
+-- Dumped by pg_dump version 14.2
+
+-- Started on 2022-06-07 01:50:32
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 210 (class 1259 OID 16460)
+-- Name: D_dispositivo; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."D_dispositivo" (
+    id_dispositivo integer NOT NULL,
+    nombre_dispositivo character varying(50) NOT NULL,
+    "nombre_SO" character varying(50) NOT NULL,
+    nombre_plataforma character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public."D_dispositivo" OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 16459)
+-- Name: D_dispositivo_id_dispositivo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."D_dispositivo_id_dispositivo_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."D_dispositivo_id_dispositivo_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3422 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: D_dispositivo_id_dispositivo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."D_dispositivo_id_dispositivo_seq" OWNED BY public."D_dispositivo".id_dispositivo;
+
+
+--
+-- TOC entry 216 (class 1259 OID 16484)
+-- Name: D_items; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."D_items" (
+    id_items integer NOT NULL,
+    nombre_item character varying(50) NOT NULL,
+    tipo_item character varying(50) NOT NULL,
+    categoria_item character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public."D_items" OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 16483)
+-- Name: D_items_id_items_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."D_items_id_items_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."D_items_id_items_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3423 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: D_items_id_items_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."D_items_id_items_seq" OWNED BY public."D_items".id_items;
+
+
+--
+-- TOC entry 218 (class 1259 OID 16491)
+-- Name: D_jugador; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."D_jugador" (
+    id_jugador integer NOT NULL,
+    jugador_nombre character varying(50) NOT NULL,
+    jugador_apellido character varying(50) NOT NULL,
+    jugador_username character varying(50) NOT NULL,
+    jugador_genero character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public."D_jugador" OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 16490)
+-- Name: D_jugador_id_jugador_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."D_jugador_id_jugador_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."D_jugador_id_jugador_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3424 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: D_jugador_id_jugador_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."D_jugador_id_jugador_seq" OWNED BY public."D_jugador".id_jugador;
+
+
+--
+-- TOC entry 214 (class 1259 OID 16477)
+-- Name: D_medio_pago; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."D_medio_pago" (
+    id_medio_pago integer NOT NULL,
+    nombre_medio_pago character varying(50) NOT NULL,
+    categoria character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public."D_medio_pago" OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 16476)
+-- Name: D_medio_pago_id_medio_pago_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."D_medio_pago_id_medio_pago_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."D_medio_pago_id_medio_pago_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3425 (class 0 OID 0)
+-- Dependencies: 213
+-- Name: D_medio_pago_id_medio_pago_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."D_medio_pago_id_medio_pago_seq" OWNED BY public."D_medio_pago".id_medio_pago;
+
+
+--
+-- TOC entry 212 (class 1259 OID 16470)
+-- Name: D_moneda; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."D_moneda" (
+    id_moneda integer NOT NULL,
+    nombre_moneda character varying(50) NOT NULL,
+    categoria character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public."D_moneda" OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 16469)
+-- Name: D_moneda_id_moneda_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."D_moneda_id_moneda_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."D_moneda_id_moneda_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3426 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: D_moneda_id_moneda_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."D_moneda_id_moneda_seq" OWNED BY public."D_moneda".id_moneda;
+
+
+--
+-- TOC entry 229 (class 1259 OID 16588)
+-- Name: D_pais; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."D_pais" (
+    id_pais integer NOT NULL,
+    nombre_pais character varying(50) NOT NULL,
+    nombre_continente character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public."D_pais" OWNER TO postgres;
+
+--
+-- TOC entry 228 (class 1259 OID 16587)
+-- Name: D_pais_id_pais_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."D_pais_id_pais_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."D_pais_id_pais_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3427 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: D_pais_id_pais_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."D_pais_id_pais_seq" OWNED BY public."D_pais".id_pais;
+
+
+--
+-- TOC entry 220 (class 1259 OID 16510)
+-- Name: D_tiempo; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."D_tiempo" (
+    id_tiempo bigint NOT NULL,
+    anio integer NOT NULL,
+    mes integer NOT NULL,
+    dia integer NOT NULL,
+    hora integer NOT NULL,
+    dia_nombre integer NOT NULL
+);
+
+
+ALTER TABLE public."D_tiempo" OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 16509)
+-- Name: D_tiempo_id_tiempo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."D_tiempo_id_tiempo_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."D_tiempo_id_tiempo_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3428 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: D_tiempo_id_tiempo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."D_tiempo_id_tiempo_seq" OWNED BY public."D_tiempo".id_tiempo;
+
+
+--
+-- TOC entry 221 (class 1259 OID 16516)
+-- Name: H_dispositivo_fav; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."H_dispositivo_fav" (
+    id_dispositivo_fav character varying(50) NOT NULL,
+    id_tiempo integer NOT NULL,
+    id_dispositivo integer NOT NULL,
+    contectados_dia integer NOT NULL
+);
+
+
+ALTER TABLE public."H_dispositivo_fav" OWNER TO postgres;
+
+--
+-- TOC entry 225 (class 1259 OID 16529)
+-- Name: H_jugadores_miselaneos; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."H_jugadores_miselaneos" (
+    id_jugadores_miselaneos integer NOT NULL,
+    id_tiempo integer NOT NULL,
+    id_jugador integer NOT NULL,
+    id_pais integer NOT NULL,
+    tiempo_activo_segundos integer NOT NULL,
+    item_fav integer NOT NULL
+);
+
+
+ALTER TABLE public."H_jugadores_miselaneos" OWNER TO postgres;
+
+--
+-- TOC entry 224 (class 1259 OID 16528)
+-- Name: H_jugadores_miselaneos_id_jugadores_miselaneos_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."H_jugadores_miselaneos_id_jugadores_miselaneos_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."H_jugadores_miselaneos_id_jugadores_miselaneos_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3429 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: H_jugadores_miselaneos_id_jugadores_miselaneos_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."H_jugadores_miselaneos_id_jugadores_miselaneos_seq" OWNED BY public."H_jugadores_miselaneos".id_jugadores_miselaneos;
+
+
+--
+-- TOC entry 227 (class 1259 OID 16536)
+-- Name: H_registros_suspensiones_miselaneos; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."H_registros_suspensiones_miselaneos" (
+    id_jugadores_miselaneos integer NOT NULL,
+    id_pais integer NOT NULL,
+    id_tiempo integer NOT NULL,
+    registros_por_dia integer NOT NULL,
+    suspensiones_cuentas_dias integer NOT NULL
+);
+
+
+ALTER TABLE public."H_registros_suspensiones_miselaneos" OWNER TO postgres;
+
+--
+-- TOC entry 226 (class 1259 OID 16535)
+-- Name: H_registros_suspensiones_miselaneos_id_jugadores_miselaneos_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."H_registros_suspensiones_miselaneos_id_jugadores_miselaneos_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."H_registros_suspensiones_miselaneos_id_jugadores_miselaneos_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3430 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: H_registros_suspensiones_miselaneos_id_jugadores_miselaneos_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."H_registros_suspensiones_miselaneos_id_jugadores_miselaneos_seq" OWNED BY public."H_registros_suspensiones_miselaneos".id_jugadores_miselaneos;
+
+
+--
+-- TOC entry 223 (class 1259 OID 16522)
+-- Name: H_ventas_fav; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."H_ventas_fav" (
+    id_ventas_fav integer NOT NULL,
+    id_dispositivo integer NOT NULL,
+    id_moneda integer NOT NULL,
+    id_medio_pago integer NOT NULL,
+    id_item integer NOT NULL,
+    id_pais integer NOT NULL,
+    ventas_dia integer NOT NULL
+);
+
+
+ALTER TABLE public."H_ventas_fav" OWNER TO postgres;
+
+--
+-- TOC entry 222 (class 1259 OID 16521)
+-- Name: H_ventas_fav_id_ventas_fav_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."H_ventas_fav_id_ventas_fav_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."H_ventas_fav_id_ventas_fav_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3431 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: H_ventas_fav_id_ventas_fav_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."H_ventas_fav_id_ventas_fav_seq" OWNED BY public."H_ventas_fav".id_ventas_fav;
+
+
+--
+-- TOC entry 3213 (class 2604 OID 16463)
+-- Name: D_dispositivo id_dispositivo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_dispositivo" ALTER COLUMN id_dispositivo SET DEFAULT nextval('public."D_dispositivo_id_dispositivo_seq"'::regclass);
+
+
+--
+-- TOC entry 3216 (class 2604 OID 16487)
+-- Name: D_items id_items; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_items" ALTER COLUMN id_items SET DEFAULT nextval('public."D_items_id_items_seq"'::regclass);
+
+
+--
+-- TOC entry 3217 (class 2604 OID 16494)
+-- Name: D_jugador id_jugador; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_jugador" ALTER COLUMN id_jugador SET DEFAULT nextval('public."D_jugador_id_jugador_seq"'::regclass);
+
+
+--
+-- TOC entry 3215 (class 2604 OID 16480)
+-- Name: D_medio_pago id_medio_pago; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_medio_pago" ALTER COLUMN id_medio_pago SET DEFAULT nextval('public."D_medio_pago_id_medio_pago_seq"'::regclass);
+
+
+--
+-- TOC entry 3214 (class 2604 OID 16473)
+-- Name: D_moneda id_moneda; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_moneda" ALTER COLUMN id_moneda SET DEFAULT nextval('public."D_moneda_id_moneda_seq"'::regclass);
+
+
+--
+-- TOC entry 3222 (class 2604 OID 16591)
+-- Name: D_pais id_pais; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_pais" ALTER COLUMN id_pais SET DEFAULT nextval('public."D_pais_id_pais_seq"'::regclass);
+
+
+--
+-- TOC entry 3218 (class 2604 OID 16513)
+-- Name: D_tiempo id_tiempo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_tiempo" ALTER COLUMN id_tiempo SET DEFAULT nextval('public."D_tiempo_id_tiempo_seq"'::regclass);
+
+
+--
+-- TOC entry 3220 (class 2604 OID 16532)
+-- Name: H_jugadores_miselaneos id_jugadores_miselaneos; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_jugadores_miselaneos" ALTER COLUMN id_jugadores_miselaneos SET DEFAULT nextval('public."H_jugadores_miselaneos_id_jugadores_miselaneos_seq"'::regclass);
+
+
+--
+-- TOC entry 3221 (class 2604 OID 16539)
+-- Name: H_registros_suspensiones_miselaneos id_jugadores_miselaneos; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_registros_suspensiones_miselaneos" ALTER COLUMN id_jugadores_miselaneos SET DEFAULT nextval('public."H_registros_suspensiones_miselaneos_id_jugadores_miselaneos_seq"'::regclass);
+
+
+--
+-- TOC entry 3219 (class 2604 OID 16525)
+-- Name: H_ventas_fav id_ventas_fav; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_ventas_fav" ALTER COLUMN id_ventas_fav SET DEFAULT nextval('public."H_ventas_fav_id_ventas_fav_seq"'::regclass);
+
+
+--
+-- TOC entry 3397 (class 0 OID 16460)
+-- Dependencies: 210
+-- Data for Name: D_dispositivo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."D_dispositivo" (id_dispositivo, nombre_dispositivo, "nombre_SO", nombre_plataforma) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3403 (class 0 OID 16484)
+-- Dependencies: 216
+-- Data for Name: D_items; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."D_items" (id_items, nombre_item, tipo_item, categoria_item) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3405 (class 0 OID 16491)
+-- Dependencies: 218
+-- Data for Name: D_jugador; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."D_jugador" (id_jugador, jugador_nombre, jugador_apellido, jugador_username, jugador_genero) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3401 (class 0 OID 16477)
+-- Dependencies: 214
+-- Data for Name: D_medio_pago; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."D_medio_pago" (id_medio_pago, nombre_medio_pago, categoria) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3399 (class 0 OID 16470)
+-- Dependencies: 212
+-- Data for Name: D_moneda; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."D_moneda" (id_moneda, nombre_moneda, categoria) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3416 (class 0 OID 16588)
+-- Dependencies: 229
+-- Data for Name: D_pais; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."D_pais" (id_pais, nombre_pais, nombre_continente) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3407 (class 0 OID 16510)
+-- Dependencies: 220
+-- Data for Name: D_tiempo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."D_tiempo" (id_tiempo, anio, mes, dia, hora, dia_nombre) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3408 (class 0 OID 16516)
+-- Dependencies: 221
+-- Data for Name: H_dispositivo_fav; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."H_dispositivo_fav" (id_dispositivo_fav, id_tiempo, id_dispositivo, contectados_dia) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3412 (class 0 OID 16529)
+-- Dependencies: 225
+-- Data for Name: H_jugadores_miselaneos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."H_jugadores_miselaneos" (id_jugadores_miselaneos, id_tiempo, id_jugador, id_pais, tiempo_activo_segundos, item_fav) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3414 (class 0 OID 16536)
+-- Dependencies: 227
+-- Data for Name: H_registros_suspensiones_miselaneos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."H_registros_suspensiones_miselaneos" (id_jugadores_miselaneos, id_pais, id_tiempo, registros_por_dia, suspensiones_cuentas_dias) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3410 (class 0 OID 16522)
+-- Dependencies: 223
+-- Data for Name: H_ventas_fav; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."H_ventas_fav" (id_ventas_fav, id_dispositivo, id_moneda, id_medio_pago, id_item, id_pais, ventas_dia) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3432 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: D_dispositivo_id_dispositivo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."D_dispositivo_id_dispositivo_seq"', 1, false);
+
+
+--
+-- TOC entry 3433 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: D_items_id_items_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."D_items_id_items_seq"', 1, false);
+
+
+--
+-- TOC entry 3434 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: D_jugador_id_jugador_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."D_jugador_id_jugador_seq"', 1, false);
+
+
+--
+-- TOC entry 3435 (class 0 OID 0)
+-- Dependencies: 213
+-- Name: D_medio_pago_id_medio_pago_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."D_medio_pago_id_medio_pago_seq"', 1, false);
+
+
+--
+-- TOC entry 3436 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: D_moneda_id_moneda_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."D_moneda_id_moneda_seq"', 1, false);
+
+
+--
+-- TOC entry 3437 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: D_pais_id_pais_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."D_pais_id_pais_seq"', 1, false);
+
+
+--
+-- TOC entry 3438 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: D_tiempo_id_tiempo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."D_tiempo_id_tiempo_seq"', 1, false);
+
+
+--
+-- TOC entry 3439 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: H_jugadores_miselaneos_id_jugadores_miselaneos_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."H_jugadores_miselaneos_id_jugadores_miselaneos_seq"', 1, false);
+
+
+--
+-- TOC entry 3440 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: H_registros_suspensiones_miselaneos_id_jugadores_miselaneos_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."H_registros_suspensiones_miselaneos_id_jugadores_miselaneos_seq"', 1, false);
+
+
+--
+-- TOC entry 3441 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: H_ventas_fav_id_ventas_fav_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."H_ventas_fav_id_ventas_fav_seq"', 1, false);
+
+
+--
+-- TOC entry 3224 (class 2606 OID 16465)
+-- Name: D_dispositivo D_dispositivo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_dispositivo"
+    ADD CONSTRAINT "D_dispositivo_pkey" PRIMARY KEY (id_dispositivo);
+
+
+--
+-- TOC entry 3230 (class 2606 OID 16489)
+-- Name: D_items D_items_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_items"
+    ADD CONSTRAINT "D_items_pkey" PRIMARY KEY (id_items);
+
+
+--
+-- TOC entry 3232 (class 2606 OID 16496)
+-- Name: D_jugador D_jugador_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_jugador"
+    ADD CONSTRAINT "D_jugador_pkey" PRIMARY KEY (id_jugador);
+
+
+--
+-- TOC entry 3228 (class 2606 OID 16482)
+-- Name: D_medio_pago D_medio_pago_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_medio_pago"
+    ADD CONSTRAINT "D_medio_pago_pkey" PRIMARY KEY (id_medio_pago);
+
+
+--
+-- TOC entry 3226 (class 2606 OID 16475)
+-- Name: D_moneda D_moneda_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_moneda"
+    ADD CONSTRAINT "D_moneda_pkey" PRIMARY KEY (id_moneda);
+
+
+--
+-- TOC entry 3244 (class 2606 OID 16593)
+-- Name: D_pais D_pais_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_pais"
+    ADD CONSTRAINT "D_pais_pkey" PRIMARY KEY (id_pais);
+
+
+--
+-- TOC entry 3234 (class 2606 OID 16515)
+-- Name: D_tiempo D_tiempo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."D_tiempo"
+    ADD CONSTRAINT "D_tiempo_pkey" PRIMARY KEY (id_tiempo);
+
+
+--
+-- TOC entry 3236 (class 2606 OID 16520)
+-- Name: H_dispositivo_fav H_dispositivo_fav_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_dispositivo_fav"
+    ADD CONSTRAINT "H_dispositivo_fav_pkey" PRIMARY KEY (id_dispositivo_fav);
+
+
+--
+-- TOC entry 3240 (class 2606 OID 16534)
+-- Name: H_jugadores_miselaneos H_jugadores_miselaneos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_jugadores_miselaneos"
+    ADD CONSTRAINT "H_jugadores_miselaneos_pkey" PRIMARY KEY (id_jugadores_miselaneos);
+
+
+--
+-- TOC entry 3242 (class 2606 OID 16541)
+-- Name: H_registros_suspensiones_miselaneos H_registros_suspensiones_miselaneos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_registros_suspensiones_miselaneos"
+    ADD CONSTRAINT "H_registros_suspensiones_miselaneos_pkey" PRIMARY KEY (id_jugadores_miselaneos);
+
+
+--
+-- TOC entry 3238 (class 2606 OID 16527)
+-- Name: H_ventas_fav H_ventas_fav_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_ventas_fav"
+    ADD CONSTRAINT "H_ventas_fav_pkey" PRIMARY KEY (id_ventas_fav);
+
+
+--
+-- TOC entry 3246 (class 2606 OID 16547)
+-- Name: H_dispositivo_fav fk_dispositivo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_dispositivo_fav"
+    ADD CONSTRAINT fk_dispositivo FOREIGN KEY (id_dispositivo) REFERENCES public."D_dispositivo"(id_dispositivo) NOT VALID;
+
+
+--
+-- TOC entry 3247 (class 2606 OID 16552)
+-- Name: H_ventas_fav fk_dispositivo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_ventas_fav"
+    ADD CONSTRAINT fk_dispositivo FOREIGN KEY (id_dispositivo) REFERENCES public."D_dispositivo"(id_dispositivo) NOT VALID;
+
+
+--
+-- TOC entry 3252 (class 2606 OID 16594)
+-- Name: H_jugadores_miselaneos fk_dispositivo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_jugadores_miselaneos"
+    ADD CONSTRAINT fk_dispositivo FOREIGN KEY (id_tiempo) REFERENCES public."D_tiempo"(id_tiempo) NOT VALID;
+
+
+--
+-- TOC entry 3250 (class 2606 OID 16567)
+-- Name: H_ventas_fav fk_item; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_ventas_fav"
+    ADD CONSTRAINT fk_item FOREIGN KEY (id_item) REFERENCES public."D_items"(id_items) NOT VALID;
+
+
+--
+-- TOC entry 3253 (class 2606 OID 16599)
+-- Name: H_jugadores_miselaneos fk_jugador; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_jugadores_miselaneos"
+    ADD CONSTRAINT fk_jugador FOREIGN KEY (id_jugador) REFERENCES public."D_jugador"(id_jugador) NOT VALID;
+
+
+--
+-- TOC entry 3249 (class 2606 OID 16562)
+-- Name: H_ventas_fav fk_medio_pago; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_ventas_fav"
+    ADD CONSTRAINT fk_medio_pago FOREIGN KEY (id_medio_pago) REFERENCES public."D_medio_pago"(id_medio_pago) NOT VALID;
+
+
+--
+-- TOC entry 3248 (class 2606 OID 16557)
+-- Name: H_ventas_fav fk_moneda; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_ventas_fav"
+    ADD CONSTRAINT fk_moneda FOREIGN KEY (id_moneda) REFERENCES public."D_moneda"(id_moneda) NOT VALID;
+
+
+--
+-- TOC entry 3254 (class 2606 OID 16604)
+-- Name: H_jugadores_miselaneos fk_pais; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_jugadores_miselaneos"
+    ADD CONSTRAINT fk_pais FOREIGN KEY (id_pais) REFERENCES public."D_pais"(id_pais) NOT VALID;
+
+
+--
+-- TOC entry 3255 (class 2606 OID 16609)
+-- Name: H_registros_suspensiones_miselaneos fk_pais; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_registros_suspensiones_miselaneos"
+    ADD CONSTRAINT fk_pais FOREIGN KEY (id_pais) REFERENCES public."D_pais"(id_pais) NOT VALID;
+
+
+--
+-- TOC entry 3251 (class 2606 OID 16619)
+-- Name: H_ventas_fav fk_pais; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_ventas_fav"
+    ADD CONSTRAINT fk_pais FOREIGN KEY (id_pais) REFERENCES public."D_pais"(id_pais) NOT VALID;
+
+
+--
+-- TOC entry 3245 (class 2606 OID 16542)
+-- Name: H_dispositivo_fav fk_tiempo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_dispositivo_fav"
+    ADD CONSTRAINT fk_tiempo FOREIGN KEY (id_tiempo) REFERENCES public."D_tiempo"(id_tiempo) NOT VALID;
+
+
+--
+-- TOC entry 3256 (class 2606 OID 16614)
+-- Name: H_registros_suspensiones_miselaneos fk_tiempo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."H_registros_suspensiones_miselaneos"
+    ADD CONSTRAINT fk_tiempo FOREIGN KEY (id_tiempo) REFERENCES public."D_tiempo"(id_tiempo) NOT VALID;
+
+
+-- Completed on 2022-06-07 01:50:32
+
+--
+-- PostgreSQL database dump complete
+--
+
