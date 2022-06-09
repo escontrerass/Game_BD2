@@ -11,16 +11,6 @@
       "id": {},
       "subtype": "i32"
     },
-    "id_plataforma": {
-      "type": "number",
-      "range": {
-        "low": 1,
-        "high": 4,
-        "step": 1,
-        "include_high": true
-      },
-      "subtype": "i32"
-    },
     "id_registro_compra": {
       "type": "same_as",
       "ref": "tbl_registro_compra.content.id_registro_compra"
@@ -28,6 +18,10 @@
     "id_tipo_pago_item": {
       "type": "same_as",
       "ref": "tbl_tipo_tipo_pago_item.content.id_tipo_pago_item"
+    },
+    "id_plataforma_dispositivo_os": {
+      "type": "same_as",
+      "ref": "tbl_plataforma_dispositivo_os.content.id_plataforma_dispositivo_os"
     },
     "sub_total": {
       "type": "number",

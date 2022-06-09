@@ -8,9 +8,16 @@ CREATE TABLE IF NOT EXISTS public.tbl_detalle_registro_compra
     id_detalle_registro_compra integer NOT NULL,
     id_registro_compra integer NOT NULL,
     sub_total integer NOT NULL,
-    id_plataforma integer NOT NULL,
     id_tipo_pago_item integer NOT NULL,
+    id_plataforma_dispositivo_os integer NOT NULL,
     CONSTRAINT tbl_detalle_registro_compra_pkey PRIMARY KEY (id_detalle_registro_compra)
+);
+
+CREATE TABLE IF NOT EXISTS public.tbl_dispositivo
+(
+    id_dispositivo integer NOT NULL,
+    dispositivo_nombre character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT tbl_dispositivo_pkey PRIMARY KEY (id_dispositivo)
 );
 
 CREATE TABLE IF NOT EXISTS public.tbl_eliminacion_registro
@@ -37,11 +44,27 @@ CREATE TABLE IF NOT EXISTS public.tbl_item
     CONSTRAINT tbl_item_pkey PRIMARY KEY (id_item)
 );
 
+CREATE TABLE IF NOT EXISTS public.tbl_os
+(
+    id_os integer NOT NULL,
+    os_nombre character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT tbl_os_pkey PRIMARY KEY (id_os)
+);
+
 CREATE TABLE IF NOT EXISTS public.tbl_plataforma
 (
     id_plataforma integer NOT NULL,
     plataforma_nombre character varying(100) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT tbl_plataforma_pkey PRIMARY KEY (id_plataforma)
+);
+
+CREATE TABLE IF NOT EXISTS public.tbl_plataforma_dispositivo_os
+(
+    id_plataforma_dispositivo_os integer NOT NULL,
+    id_plataforma integer NOT NULL,
+    id_dispositivo integer NOT NULL,
+    id_os integer NOT NULL,
+    CONSTRAINT tbl_plataforma_dispositivo_os_pkey PRIMARY KEY (id_plataforma_dispositivo_os)
 );
 
 CREATE TABLE IF NOT EXISTS public.tbl_registro_compra
@@ -95,8 +118,8 @@ CREATE TABLE IF NOT EXISTS public.tbl_usuario
 );
 
 ALTER TABLE IF EXISTS public.tbl_detalle_registro_compra
-    ADD CONSTRAINT tbl_detalle_registro_compra_id_plataforma_fkey FOREIGN KEY (id_plataforma)
-    REFERENCES public.tbl_plataforma (id_plataforma) MATCH SIMPLE
+    ADD CONSTRAINT tbl_detalle_registro_compra_id_plataforma_dispositivo FOREIGN KEY (id_plataforma_dispositivo_os)
+    REFERENCES public.tbl_plataforma_dispositivo_os (id_plataforma_dispositivo_os) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
@@ -132,6 +155,27 @@ ALTER TABLE IF EXISTS public.tbl_historial_registro
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
+
+
+ALTER TABLE IF EXISTS public.tbl_plataforma_dispositivo_os
+    ADD CONSTRAINT tbl_plataforma_dispositivo_os_id_dispositivo FOREIGN KEY (id_dispositivo)
+    REFERENCES public.tbl_dispositivo (id_dispositivo) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+
+
+ALTER TABLE IF EXISTS public.tbl_plataforma_dispositivo_os
+    ADD CONSTRAINT tbl_plataforma_dispositivo_os_id_os FOREIGN KEY (id_os)
+    REFERENCES public.tbl_os (id_os) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+
+
+ALTER TABLE IF EXISTS public.tbl_plataforma_dispositivo_os
+    ADD CONSTRAINT tbl_plataforma_dispositivo_os_id_plataforma FOREIGN KEY (id_plataforma)
+    REFERENCES public.tbl_plataforma (id_plataforma) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
 
 
 ALTER TABLE IF EXISTS public.tbl_registro_compra

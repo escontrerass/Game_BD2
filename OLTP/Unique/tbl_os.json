@@ -1,0 +1,40 @@
+{
+    "type": "array",
+    "length": {
+      "type": "number",
+      "constant": 4
+    },
+    "content": {
+      "type": "object",
+      "id_os": {
+        "type": "number",
+        "id": {},
+        "subtype": "i32"
+      },
+      "os_nombre": {
+        "type": "unique",
+        "content": {
+          "type": "one_of",
+          "variants": [
+            {
+              "type": "string",
+              "pattern": "Android"
+            },
+            {
+              "type": "string",
+              "pattern": "Windows"
+            },
+            {
+              "type": "string",
+              "pattern": "iOS"
+            },
+            {
+              "type": "string",
+              "pattern": "Linux"
+            }
+          ]
+        }
+      }
+    }
+  }
+  

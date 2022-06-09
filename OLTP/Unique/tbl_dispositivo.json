@@ -1,0 +1,56 @@
+{
+    "type": "array",
+    "length": {
+      "type": "number",
+      "constant": 8
+    },
+    "content": {
+      "type": "object",
+      "id_dispositivo": {
+        "type": "number",
+        "id": {},
+        "subtype": "i32"
+      },
+      "dispositivo_nombre": {
+        "type": "unique",
+        "content": {
+          "type": "one_of",
+          "variants": [
+            {
+              "type": "string",
+              "pattern": "Iphone X"
+            },
+            {
+              "type": "string",
+              "pattern": "Samsung Y"
+            },
+            {
+              "type": "string",
+              "pattern": "Xbox One"
+            },
+            {
+              "type": "string",
+              "pattern": "Pc"
+            },
+            {
+              "type": "string",
+              "pattern": "Ipad"
+            },
+            {
+              "type": "string",
+              "pattern": "Samsung Tab"
+            },
+            {
+              "type": "string",
+              "pattern": "Steam deck"
+            },
+            {
+              "type": "string",
+              "pattern": "Playstation 5"
+            }
+          ]
+        }
+      }
+    }
+  }
+  

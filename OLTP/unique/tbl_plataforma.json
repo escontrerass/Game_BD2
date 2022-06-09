@@ -18,19 +18,19 @@
         "variants": [
           {
             "type": "string",
-            "pattern": "Android"
+            "pattern": "Steam"
           },
           {
             "type": "string",
-            "pattern": "Windows"
+            "pattern": "AppStore"
           },
           {
             "type": "string",
-            "pattern": "iOS"
+            "pattern": "GooglePlay"
           },
           {
             "type": "string",
-            "pattern": "Linux"
+            "pattern": "PlaystationStore"
           }
         ]
       }
