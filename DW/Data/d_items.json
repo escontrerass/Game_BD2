@@ -1,0 +1,91 @@
+{
+  "type": "array",
+  "length": {
+    "type": "number",
+    "constant": 1
+  },
+  "content": {
+    "type": "object",
+    "categoria_item": {
+      "type": "one_of",
+        "variants": [
+          {
+            "type": "string",
+            "pattern": "Comun"
+          },
+          {
+            "type": "string",
+            "pattern": "Poco comun"
+          },
+          {
+            "type": "string",
+            "pattern": "Raro"
+          },
+          {
+            "type": "string",
+            "pattern": "Epico"
+          },
+          {
+            "type": "string",
+            "pattern": "Legendario"
+          }
+        ]
+    },
+    "id_items": {
+      "type": "number",
+      "id": {},
+      "subtype": "i32"
+    },
+    "nombre_item": {
+      "type": "string",
+      "faker": {
+        "generator": "company_name"
+      }
+    },
+    "tipo_item": {
+      "type": "one_of",
+        "variants": [
+          {
+            "type": "string",
+            "pattern": "Espada"
+          },
+          {
+            "type": "string",
+            "pattern": "Escudo"
+          },
+          {
+            "type": "string",
+            "pattern": "Arco"
+          },
+          {
+            "type": "string",
+            "pattern": "Hacha"
+          },
+          {
+            "type": "string",
+            "pattern": "Baston"
+          },
+          {
+            "type": "string",
+            "pattern": "Collar"
+          },
+          {
+            "type": "string",
+            "pattern": "Ballesta"
+          },
+          {
+            "type": "string",
+            "pattern": "Pechera"
+          },
+          {
+            "type": "string",
+            "pattern": "Casco"
+          },
+          {
+            "type": "string",
+            "pattern": "Pantalones"
+          }
+        ]
+    }
+  }
+}

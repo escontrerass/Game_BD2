@@ -1,0 +1,37 @@
+{
+  "type": "array",
+  "length": {
+    "type": "number",
+    "constant": 1
+  },
+  "content": {
+    "type": "object",
+    "id_jugador": {
+      "type": "number",
+      "id": {},
+      "subtype": "i32"
+    },
+    "jugador_apellido": {
+      "type": "string",
+      "faker": {
+        "generator": "last_name"
+      }
+    },
+    "jugador_genero": {
+      "type": "bool",
+      "frequency": 0.5
+    },
+    "jugador_nombre": {
+      "type": "string",
+      "faker": {
+        "generator": "first_name"
+      }
+    },
+    "jugador_username": {
+      "type": "string",
+      "faker": {
+        "generator": "username"
+      }
+    }
+  }
+}
