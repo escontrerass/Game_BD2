@@ -1,0 +1,182 @@
+/* 1. ¿Cuál es el dispositivo más usado? */
+
+SELECT
+	disp.id_dispositivo,
+	disp.nombre_dispositivo,
+	SUM(COALESCE(disp_fav.contectados_dia,0)) as dispositivo_mas_usado
+FROM public.d_dispositivo disp
+	LEFT JOIN public.h_dispositivo_fav disp_fav 
+	ON disp_fav.id_dispositivo=disp.id_dispositivo
+GROUP BY disp.id_dispositivo
+ORDER BY disp.id_dispositivo
+
+/* 2. ¿Cuáles fueron los medios de pago - moneda más utilizados por país? */
+
+SELECT 
+	pais.id_pais,
+	pais.nombre_pais,
+	mp.nombre_medio_pago,
+	vfav.medio_pago,
+	m.nombre_moneda,
+	vf.moneda
+FROM public.d_pais pais
+	LEFT JOIN (
+		SELECT
+			id_pais,
+			id_medio_pago,
+			RANK () OVER ( 
+				PARTITION by id_pais order by id_medio_pago asc,id_medio_pago asc
+			) medio_pago
+		FROM public.h_ventas_fav vf GROUP BY id_medio_pago,id_pais
+	) vfav on vfav.id_pais=pais.id_pais
+	LEFT JOIN (
+		SELECT
+			id_pais,
+			id_moneda,
+			RANK () OVER ( 
+				PARTITION by id_pais order by id_moneda asc,id_moneda asc
+			) moneda
+		FROM public.h_ventas_fav vf GROUP BY id_moneda,id_pais
+	) vf on vf.id_pais=pais.id_pais
+	LEFT JOIN public.d_medio_pago mp on mp.id_medio_pago=vfav.id_medio_pago
+	LEFT JOIN public.d_moneda m on m.id_moneda=vf.id_moneda
+WHERE vfav.medio_pago = 1 and vf.moneda = 1
+GROUP BY 
+	pais.id_pais,
+	mp.nombre_medio_pago,
+	vfav.medio_pago,
+	m.nombre_moneda,
+	vf.moneda
+ORDER BY pais.id_pais ASC
+
+/* 3. Cantidad de jugadores activos en un periodo de tiempo */
+
+SELECT 
+	count(jm.id_jugador) as catidad_jugadores
+FROM public.h_jugadores_miselaneos jm
+	LEFT JOIN public.d_tiempo t ON t.id_tiempo = jm.id_tiempo
+WHERE t.fecha BETWEEN '2020-01-01' AND '2020-05-02'
+
+/* 4. Cantidad de tiempo activo por jugador */
+
+SELECT jugador.id_jugador, jugador.jugador_nombre, h_jugadores_miselaneos.tiempo_activo_segundos
+FROM h_jugadores_miselaneos
+LEFT JOIN d_jugador jugador ON jugador.id_jugador = h_jugadores_miselaneos.id_jugadores_miselaneos
+WHERE jugador.id_jugador = h_jugadores_miselaneos.id_jugadores_miselaneos
+GROUP BY jugador.id_jugador, jugador.jugador_nombre, h_jugadores_miselaneos.tiempo_activo_segundos
+ORDER BY jugador.id_jugador ASC
+
+/* 5. Items favoritos por los jugadores (top 10) */
+
+SELECT
+	jm.id_item_fav,
+	items.total,
+	item.nombre_item
+FROM public.h_jugadores_miselaneos jm
+	LEFT JOIN (
+		SELECT
+			ji.id_item_fav,
+			count(ji.id_item_fav) as total
+		FROM public.h_jugadores_miselaneos ji
+		GROUP BY ji.id_item_fav
+	) items on items.id_item_fav=jm.id_item_fav
+	LEFT JOIN public.d_items item on item.id_items=jm.id_item_fav
+GROUP BY jm.id_item_fav,items.total,item.nombre_item
+ORDER BY items.total desc
+FETCH FIRST 10 ROWS ONLY
+
+/* 6. Sistema operativo más usado */
+
+SELECT dis."nombre_SO", COUNT(dis.id_dispositivo)
+FROM d_dispositivo dis
+GROUP BY dis."nombre_SO"
+ORDER BY COUNT(dis.id_dispositivo) DESC
+FETCH FIRST ROW ONLY
+
+/* 7. En qué sistema operativo es más rentable el juego */
+
+
+
+/* 8. Total de compras por mes - año */
+
+
+
+/* 9. País con más ítems comprados */
+
+SELECT pais.nombre_pais, items.nombre_item, RANK() OVER(PARTITION BY pais.nombre_pais) 
+FROM h_ventas_fav 
+LEFT JOIN d_pais pais ON pais.id_pais = h_ventas_fav.id_pais
+LEFT JOIN d_items items ON items.id_items = h_ventas_fav.id_item
+WHERE h_ventas_fav.id_item = items.id_items
+GROUP BY pais.id_pais, items.nombre_item
+ORDER BY pais.id_pais ASC
+
+/* 10. Promedio de gastos por un tiempo determinado en el juego */
+
+
+
+/* 11. Promedio de actividad por día del jugador */
+
+SELECT jugador.id_jugador, jugador.jugador_nombre, h_jugadores_miselaneos.tiempo_activo_segundos, tiempo.fecha
+FROM h_jugadores_miselaneos
+LEFT JOIN d_jugador jugador ON jugador.id_jugador = h_jugadores_miselaneos.id_jugadores_miselaneos
+LEFT JOIN d_tiempo tiempo ON tiempo.id_tiempo = h_jugadores_miselaneos.id_tiempo
+WHERE jugador.id_jugador = h_jugadores_miselaneos.id_jugadores_miselaneos
+GROUP BY jugador.id_jugador, jugador.jugador_nombre, h_jugadores_miselaneos.tiempo_activo_segundos, tiempo.fecha
+ORDER BY jugador.id_jugador ASC
+
+/* 12. Países donde el juego es más popular */
+
+SELECT sum(h_registros_suspensiones_miselaneos.registros_por_dia), pais.nombre_pais
+FROM h_registros_suspensiones_miselaneos
+LEFT JOIN d_pais pais ON pais.id_pais = h_registros_suspensiones_miselaneos.id_pais
+GROUP BY pais.nombre_pais
+ORDER BY sum(h_registros_suspensiones_miselaneos.registros_por_dia) DESC
+FETCH FIRST 10 ROW ONLY
+
+/* 13. Promedio de registros de jugadores por fecha */
+
+/* BUSCAR POR AÑO */
+SELECT SUM(h_registros_suspensiones_miselaneos.registros_por_dia) 
+FROM h_registros_suspensiones_miselaneos
+LEFT JOIN d_tiempo tiempo ON tiempo.id_tiempo = h_registros_suspensiones_miselaneos.id_tiempo
+WHERE extract(year from tiempo.fecha) = 2021
+
+/* BUSCAR POR MES Y AÑO */
+SELECT SUM(h_registros_suspensiones_miselaneos.registros_por_dia) 
+FROM h_registros_suspensiones_miselaneos
+LEFT JOIN d_tiempo tiempo ON tiempo.id_tiempo = h_registros_suspensiones_miselaneos.id_tiempo
+WHERE extract(year from tiempo.fecha) = 2021 and extract(month from tiempo.fecha) = 04
+
+/* BUSCAR POR INTERVALO DE FECHAS */
+SELECT SUM(h_registros_suspensiones_miselaneos.registros_por_dia) 
+FROM h_registros_suspensiones_miselaneos
+LEFT JOIN d_tiempo tiempo ON tiempo.id_tiempo = h_registros_suspensiones_miselaneos.id_tiempo
+WHERE tiempo.fecha BETWEEN '01/01/2019' AND '30/04/2021'
+
+/* 14. Número de cuentas eliminadas por una fecha determinada */
+
+/* BUSCAR POR AÑO */
+SELECT SUM(h_registros_suspensiones_miselaneos.suspensiones_cuentas_dias) 
+FROM h_registros_suspensiones_miselaneos
+LEFT JOIN d_tiempo tiempo ON tiempo.id_tiempo = h_registros_suspensiones_miselaneos.id_tiempo
+WHERE extract(year from tiempo.fecha) = 2021
+
+/* BUSCAR POR MES Y AÑO */
+SELECT SUM(h_registros_suspensiones_miselaneos.suspensiones_cuentas_dias) 
+FROM h_registros_suspensiones_miselaneos
+LEFT JOIN d_tiempo tiempo ON tiempo.id_tiempo = h_registros_suspensiones_miselaneos.id_tiempo
+WHERE extract(year from tiempo.fecha) = 2021 and extract(month from tiempo.fecha) = 04
+
+/* BUSCAR POR INTERVALO DE FECHAS */
+SELECT SUM(h_registros_suspensiones_miselaneos.suspensiones_cuentas_dias) 
+FROM h_registros_suspensiones_miselaneos
+LEFT JOIN d_tiempo tiempo ON tiempo.id_tiempo = h_registros_suspensiones_miselaneos.id_tiempo
+WHERE tiempo.fecha BETWEEN '01/01/2019' AND '30/04/2021'
+
+/* 15. Historial de recargas de saldo */
+
+
+
+
+

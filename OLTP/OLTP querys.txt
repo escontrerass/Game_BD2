@@ -1,0 +1,139 @@
+/* 1. ¿Cuál es el dispositivo más usado? */
+
+
+
+
+/* 2. ¿Cuáles fueron los medios de pago - moneda más utilizados por país? */
+
+
+
+/* 3. Cantidad de jugadores activos en un periodo de tiempo */
+
+
+
+/* 4. Cantidad de tiempo activo por jugador */
+
+
+
+/* 5. Items favoritos por los jugadores (top 10) */
+
+
+
+/* 6. Sistema operativo más usado */
+
+
+
+/* 7. En qué sistema operativo es más rentable el juego */
+
+
+
+/* 8. Total de compras por mes - año */
+
+/* BUSCAR POR AÑO */
+SELECT count(*) FROM tbl_registro_compra WHERE extract(year from tbl_registro_compra.fecha) = 2021
+
+/* BUSCAR POR MES Y AÑO */
+SELECT count(*) FROM tbl_registro_compra WHERE extract(year from tbl_registro_compra.fecha) = 2021 and extract(month from tbl_registro_compra.fecha) = 04
+
+/* BUSCAR POR INTERVALO DE FECHAS */
+SELECT count(*) FROM tbl_registro_compra WHERE tbl_registro_compra.fecha BETWEEN '01/01/2019' AND '30/04/2021'
+
+
+/* 9. País con más ítems comprados */
+
+SELECT usuario.usuario_region, COUNT(usuario.id_usuario)
+FROM tbl_usuario usuario
+LEFT JOIN tbl_registro_compra rg_compra ON rg_compra.id_usuario = usuario.id_usuario
+GROUP BY usuario.usuario_region
+ORDER BY COUNT(usuario.id_usuario) DESC
+FETCH FIRST ROW ONLY
+
+/* 10. Promedio de gastos por un tiempo determinado en el juego */
+
+/* BUSCAR POR AÑO */
+SELECT usuario.id_usuario, usuario.usuario_nombre, tbl_registro_compra.monto_total
+FROM tbl_registro_compra
+LEFT JOIN tbl_usuario usuario ON usuario.id_usuario = tbl_registro_compra.id_usuario
+WHERE extract(year from tbl_registro_compra.fecha) = 2021
+ORDER BY usuario.id_usuario
+
+/* BUSCAR POR MES Y AÑO */
+SELECT usuario.id_usuario, usuario.usuario_nombre, tbl_registro_compra.monto_total
+FROM tbl_registro_compra
+LEFT JOIN tbl_usuario usuario ON usuario.id_usuario = tbl_registro_compra.id_usuario
+WHERE extract(year from tbl_registro_compra.fecha) = 2021
+AND extract(month from tbl_registro_compra.fecha) = 04
+ORDER BY usuario.id_usuario
+
+/* BUSCAR POR INTERVALO DE FECHAS */
+SELECT usuario.id_usuario, usuario.usuario_nombre, tbl_registro_compra.monto_total
+FROM tbl_registro_compra
+LEFT JOIN tbl_usuario usuario ON usuario.id_usuario = tbl_registro_compra.id_usuario
+WHERE tbl_registro_compra.fecha BETWEEN '01/01/2019' AND '30/04/2021'
+ORDER BY usuario.id_usuario
+
+/* 11. Promedio de actividad por día del jugador */
+
+
+
+/* 12. Países donde el juego es más popular */
+
+SELECT sum(registro.id_historial_registro), usuario.usuario_region
+FROM tbl_usuario usuario
+LEFT JOIN tbl_historial_registro registro ON registro.id_usuario = usuario.id_usuario
+GROUP BY usuario.usuario_region
+ORDER BY sum(registro.id_historial_registro) DESC
+FETCH FIRST 10 ROW ONLY
+
+/* 13. Promedio de registros de jugadores por fecha */
+
+
+/* BUSCAR POR AÑO */
+SELECT count(usuario.id_usuario)
+FROM tbl_historial_registro
+LEFT JOIN tbl_usuario usuario ON usuario.id_usuario = tbl_historial_registro.id_usuario
+WHERE extract(year from tbl_historial_registro.fecha_registro) = 2021
+
+/* BUSCAR POR MES Y AÑO */
+SELECT count(usuario.id_usuario)
+FROM tbl_historial_registro
+LEFT JOIN tbl_usuario usuario ON usuario.id_usuario = tbl_historial_registro.id_usuario
+WHERE extract(year from tbl_historial_registro.fecha_registro) = 2021
+AND extract(month from tbl_historial_registro.fecha_registro) = 04
+
+/* BUSCAR POR INTERVALO DE FECHAS */
+SELECT count(usuario.id_usuario)
+FROM tbl_historial_registro
+LEFT JOIN tbl_usuario usuario ON usuario.id_usuario = tbl_historial_registro.id_usuario
+WHERE tbl_historial_registro.fecha_registro BETWEEN '01/01/2019' AND '30/04/2021'
+
+/* 14. Número de cuentas eliminadas por una fecha determinada */
+
+/* BUSCAR POR AÑO */
+SELECT count(usuario.id_usuario)
+FROM tbl_eliminacion_registro
+LEFT JOIN tbl_usuario usuario ON usuario.id_usuario = tbl_eliminacion_registro.id_usuario
+WHERE extract(year from tbl_eliminacion_registro.fecha_eliminacion) = 2021
+
+
+/* BUSCAR POR MES Y AÑO */
+SELECT count(usuario.id_usuario)
+FROM tbl_eliminacion_registro
+LEFT JOIN tbl_usuario usuario ON usuario.id_usuario = tbl_eliminacion_registro.id_usuario
+WHERE extract(year from tbl_eliminacion_registro.fecha_eliminacion) = 2021
+AND extract(month from tbl_eliminacion_registro.fecha_eliminacion) = 04
+
+
+/* BUSCAR POR INTERVALO DE FECHAS */
+SELECT count(usuario.id_usuario)
+FROM tbl_eliminacion_registro
+LEFT JOIN tbl_usuario usuario ON usuario.id_usuario = tbl_eliminacion_registro.id_usuario
+WHERE tbl_eliminacion_registro.fecha_eliminacion BETWEEN '01/01/2019' AND '30/04/2021'
+
+/* 15. Historial de recargas de saldo */
+
+SELECT usuario.usuario_nombre, registro.id_registro_recarga, registro.recarga_monto
+FROM tbl_usuario usuario
+LEFT JOIN tbl_registro_recarga registro ON registro.id_usuario = usuario.id_usuario
+GROUP BY usuario.id_usuario, registro.id_registro_recarga, registro.recarga_monto
+ORDER BY usuario.id_usuario ASC
