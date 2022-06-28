@@ -117,6 +117,15 @@ CREATE TABLE IF NOT EXISTS public.tbl_usuario
     CONSTRAINT tbl_usuario_pkey PRIMARY KEY (id_usuario)
 );
 
+CREATE TABLE IF NOT EXISTS public.tbl_user_login
+(
+    id_user_login integer NOT NULL,
+    time_login timestamp with time zone NOT NULL,
+    time_logout timestamp with time zone NOT NULL,
+    id_usuario integer NOT NULL,
+    PRIMARY KEY (id_user_login)
+);
+
 ALTER TABLE IF EXISTS public.tbl_detalle_registro_compra
     ADD CONSTRAINT tbl_detalle_registro_compra_id_plataforma_dispositivo FOREIGN KEY (id_plataforma_dispositivo_os)
     REFERENCES public.tbl_plataforma_dispositivo_os (id_plataforma_dispositivo_os) MATCH SIMPLE
@@ -205,6 +214,14 @@ ALTER TABLE IF EXISTS public.tbl_tipo_tipo_pago_item
 ALTER TABLE IF EXISTS public.tbl_tipo_tipo_pago_item
     ADD CONSTRAINT tbl_tipo_tipo_pago_item_id_tipo_pago_fkey FOREIGN KEY (id_tipo_pago)
     REFERENCES public.tbl_tipo_pago (id_tipo_pago) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public.tbl_user_login
+    ADD FOREIGN KEY (id_usuario)
+    REFERENCES public.tbl_usuario (id_usuario) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
